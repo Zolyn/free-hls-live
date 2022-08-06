@@ -9,10 +9,13 @@ export interface OptionCli extends Option {
   config: string
 }
 
-export type Uploader = (path: string) => Promise<string> | string
+export type Uploader = (
+  path: string,
+  options: Required<Option>
+) => Promise<string> | string
 
 export type StorageProvider = (opts: {
   filePath: string
   filename: string
   option: OptionResolved & Record<string, any>
-}) => void | Promise<void>
+}) => string | Promise<string>

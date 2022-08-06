@@ -133,7 +133,7 @@ async function onPlaylistChange(
         }
       } else {
         const startTime = Date.now()
-        const url = await uploader(videoPath)
+        const url = await uploader(videoPath, option)
         uploadCache.set(videoPath, url)
         console.info(
           `${green(`uploaded ${filename} to ${url}. `)}cost ${blue(

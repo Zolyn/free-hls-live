@@ -9,7 +9,7 @@ export default defineStorageProvider(async ({ filePath, filename, option }) => {
     SecretKey: option.storage.secretKey,
   })
   const path = option.storage.path + filename
-  await cos.putObject({
+  const result = await cos.putObject({
     Bucket: option.storage.bucket,
     Region: option.storage.region,
     Key: path,
@@ -17,4 +17,5 @@ export default defineStorageProvider(async ({ filePath, filename, option }) => {
     StorageClass: 'STANDARD',
   })
   console.log(green(`upload ${filename} file to COS ${path} successfully.`))
+  return `https://${result.Location}`
 })
